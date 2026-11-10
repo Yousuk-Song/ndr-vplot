@@ -2,7 +2,7 @@
 
 A Snakemake workflow for generating fragment midpoint × length matrices around user-supplied NDRs from indexed cfDNA WGS CRAM files. This is an independent, methods-inspired implementation, not a verified reproduction of Bae et al. or their trained CNN.
 
-![Workflow](docs/workflow.svg)
+![Workflow](docs/workflow.png)
 
 ## Method
 
