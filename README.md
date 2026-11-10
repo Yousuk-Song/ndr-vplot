@@ -2,7 +2,7 @@
 
 A Snakemake workflow for generating fragment midpoint × length matrices around user-supplied NDRs from indexed cfDNA WGS CRAM files. This is an independent, methods-inspired implementation, not a verified reproduction of Bae et al. or their trained CNN.
 
-![Workflow](docs/workflow.png)
+![Workflow: CRAM and NDR BED inputs are transformed into an NDR-aligned fragment midpoint and length matrix; the example V-plot is synthetic.](docs/workflow.png)
 
 ## Method
 
@@ -51,3 +51,13 @@ No patient data, clinical tables, CRAMs or reference BED are included. Obtain an
 
 - Bae et al. *Nature Communications* (2023), [10.1038/s41467-023-37768-3](https://doi.org/10.1038/s41467-023-37768-3); [authors’ repository](https://github.com/kaistomics/cfWGS).
 - Henikoff et al. *PNAS* (2011), [10.1073/pnas.1110731108](https://doi.org/10.1073/pnas.1110731108).
+
+## Group V-plot visualization
+
+After sample-level runs, prepare a tab-separated file with `sample`, `group`, and `npz` columns; see `examples/group_manifest.tsv`. List groups in the desired display order. Provide 2–6 groups and unique sample IDs. Use matching region BED, reference and processing settings. Existing validated NPZ files can be used without re-running CRAM.
+
+```bash
+python scripts/group_vplot_compare.py --manifest /path/to/groups.tsv --output /path/to/new_comparison
+```
+
+The output contains group mean V-plots and pairwise difference heatmaps in PNG/PDF, group matrices, sample audit, input SHA-256 and comparison metadata. Each patient is normalized across all matrix pixels and channels using sample-wide min–max, then receives equal weight in its group. The first colorbar is shared across group means and the second uses a shared symmetric zero-centered scale for all differences. No smoothing is applied. Group subtraction is descriptive; no PERMANOVA or pairwise/pixel-wise statistical test is performed. Verify assay settings and sampling times. Missing BED provenance is reported as a warning; incompatible known BED hashes or bin edges stop the run.
