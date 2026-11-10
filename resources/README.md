@@ -1,0 +1,1 @@
+Provide a BED file for your own analysis and set `bed` in config.json. Verify reference build, coordinate convention and redistribution rights. The locally derived STAD BED is intentionally not included in this public package.

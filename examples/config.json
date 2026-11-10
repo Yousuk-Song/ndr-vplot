@@ -1,0 +1,16 @@
+{
+  "samples": "samples.tsv",
+  "reference": "/data/reference/hg38.fa",
+  "bed": "/data/regions/stad_hg38.bed",
+  "output_dir": "/data/results/ndr_vplot",
+  "cores": 16,
+  "threads_per_sample": 4,
+  "jobs": 4,
+  "memory_mb": 32000,
+  "mem_mb_per_sample": 8000,
+  "half_window": 1000,
+  "x_bin": 4,
+  "min_length": 100,
+  "max_length": 200,
+  "mapq": 30
+}
